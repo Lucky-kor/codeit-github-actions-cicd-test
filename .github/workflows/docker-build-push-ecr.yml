@@ -114,7 +114,14 @@ jobs:
       # 12) ECS 서비스 업데이트 (새 작업 정의 강제 배포)
       - name: ECS 서비스 업데이트
         run: |
-          aws ecs create-service \
+#          aws ecs update-service \
+#            --cluster ${{ secrets.ECS_CLUSTER }} \
+#            --service ${{ secrets.ECS_SERVICE }} \
+#            --task-definition $TASK_DEF_ARN \
+#            --force-new-deployment
+      - name: ECS 서비스 업데이트
+        run: |
+          aws ecs update-service \
           --cluster my-ec2-test-cluster \
           --service-name myapp-ec2-service \
           --task-definition myapp-task \
