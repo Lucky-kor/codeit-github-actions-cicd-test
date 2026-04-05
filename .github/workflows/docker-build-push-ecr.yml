@@ -122,11 +122,10 @@ jobs:
       - name: ECS 서비스 업데이트
         run: |
           aws ecs update-service \
-          --cluster my-ec2-test-cluster \
-          --service-name myapp-ec2-service \
-          --task-definition myapp-task \
-          --desired-count 1 \
-          --launch-type EC2
+            --cluster my-ec2-test-cluster \
+            --service myapp-ec2-service \
+            --task-definition "$TASK_DEF_ARN" \
+            --force-new-deployment
 
       # 13) 배포 완료 대기 (서비스가 안정 상태가 될 때까지)
 #      - name: ECS 배포 완료 대기
